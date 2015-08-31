@@ -1,0 +1,61 @@
+//
+//  PrefixHeader.pch
+//  ShanHongProject
+//
+//  Created by teddy on 15/6/9.
+//  Copyright (c) 2015年 teddy. All rights reserved.
+//
+
+#ifndef ShanHongProject_PrefixHeader_pch
+#define ShanHongProject_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "SVProgressHUD.h"
+
+
+#define BG_COLOR [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0f]
+#define HeaderView_BGCOLOR [UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1.0]
+#define Font_BGCOLOR [UIColor colorWithRed:20/255.0 green:42/255.0 blue:72/255.0 alpha:1.0]
+
+#define Site_URL @"http://115.236.2.245:38019/data.ashx?"
+//#define URL @"http://115.236.169.28/webserca/Data.ashx?"
+
+//定义筛选类型的枚举
+typedef enum {
+    ProjectFilter = 0, //工情搜索
+    RainStationFilter = 1, //雨情站点搜索
+    WaterStationFilter = 2, //水情站点搜索
+    GISFilter = 3,//GIS搜索
+    
+}FILTERTYPE;
+
+
+#define kWidth 100
+#define kHeight 40
+#define kWidthMargin 1
+#define kHeightMargin 3
+
+#define NavigationBarHeight 44
+
+#define kTableViewmargin 44
+
+#define kScreen_Width [[UIScreen mainScreen] bounds].size.width
+#define kScreen_height [[UIScreen mainScreen] bounds].size.height
+
+//站点信息
+#define  STATION @"station"
+
+//用户名
+#define  USERNAME @"username"
+
+//密码
+#define PASSWORD @"password"
+
+//站名
+#define SITE @"site"
+
+
+
+#endif
