@@ -17,6 +17,8 @@
     UITableView *myTableView;
     NSArray *listData;
     NSString *selectArea;
+    
+    NSDictionary *_selectDic;//选中的站点对象
 }
 
 @end
@@ -100,6 +102,14 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择一个站点" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }else{
+        
+        SingleInstanceObject *instance = [SingleInstanceObject defaultInstance];
+        instance.Scityid = [_selectDic objectForKey:@"Scityid"];
+        instance.ScityName = [_selectDic objectForKey:@"ScityName"];
+        instance.SproxyUrl = [_selectDic objectForKey:@"SproxyUrl"];
+        instance.ScenterLng = [_selectDic objectForKey:@"ScenterLng"];
+        instance.ScenterLat = [_selectDic objectForKey:@"ScenterLat"];
+        instance.ScenterZoom = [_selectDic objectForKey:@"ScenterZoom"];
         [self.delegate selectStationAction:selectArea];
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -117,6 +127,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
     }
+    
+    //检查本地存储着的站点，默认显示“选择状态”
+    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:STATION] objectForKey:@"ScityName"] isEqualToString:[listData[indexPath.row] objectForKey:@"ScityName"]]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        //默认选择
+        _selectRow = indexPath.row;
+        selectArea = [[[NSUserDefaults standardUserDefaults] objectForKey:STATION] objectForKey:@"ScityName"];
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.textLabel.text = [listData[indexPath.row] objectForKey:@"ScityName"];
     return cell;
@@ -125,12 +145,12 @@
 static NSInteger _selectRow;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_selectRow >= 0) {
-        //取消上一次选中
-        NSIndexPath *oldIndex = [NSIndexPath indexPathForRow:_selectRow inSection:0];
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:oldIndex];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+
+    //取消上一次选中
+    NSIndexPath *oldIndex = [NSIndexPath indexPathForRow:_selectRow inSection:0];
+    UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:oldIndex];
+    lastCell.accessoryType = UITableViewCellAccessoryNone;
+    //重选选择
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     _selectRow = indexPath.row;
@@ -138,15 +158,9 @@ static NSInteger _selectRow;
     //将所选的站点的信息赋值给单例保存
     NSDictionary *dic = listData[indexPath.row];
     //将站点信息保存在本地
+    _selectDic = dic;
     [self saveInfo:dic];
     selectArea = [dic objectForKey:@"ScityName"];
-    SingleInstanceObject *instance = [SingleInstanceObject defaultInstance];
-    instance.Scityid = [dic objectForKey:@"Scityid"];
-    instance.ScityName = [dic objectForKey:@"ScityName"];
-    instance.SproxyUrl = [dic objectForKey:@"SproxyUrl"];
-    instance.ScenterLng = [dic objectForKey:@"ScenterLng"];
-    instance.ScenterLat = [dic objectForKey:@"ScenterLat"];
-    instance.ScenterZoom = [dic objectForKey:@"ScenterZoom"];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

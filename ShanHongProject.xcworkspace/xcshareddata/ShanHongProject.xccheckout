@@ -10,14 +10,14 @@
 	<string>ShanHongProject</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9DB0754AD0E8D8D26365C1F002043653F8BCE782</key>
+		<key>434C803C9A5871E8836A44A21B3597D5B6FFB3AD</key>
 		<string>https://github.com/teddyBearWang/ShanHongProject.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ShanHongProject.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9DB0754AD0E8D8D26365C1F002043653F8BCE782</key>
+		<key>434C803C9A5871E8836A44A21B3597D5B6FFB3AD</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9DB0754AD0E8D8D26365C1F002043653F8BCE782</string>
+	<string>434C803C9A5871E8836A44A21B3597D5B6FFB3AD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9DB0754AD0E8D8D26365C1F002043653F8BCE782</string>
+			<string>434C803C9A5871E8836A44A21B3597D5B6FFB3AD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ShanHongProject</string>
 		</dict>
